@@ -4,7 +4,7 @@
 using namespace std;
 
 class Resource
-{ 
+{
 public:
     void use(const char* N)
     {
@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
     catch (logic_error & e)
     {
         cout << e.what() << endl;
+        delete rsc;
     }
     return 0;
 }
