@@ -19,3 +19,4 @@ add_compile_options(-c
 add_executable(valgrind1 valgrind1.cpp)
 add_executable(valgrind2 valgrind2.cpp)
 add_executable(valgrind3 valgrind3.cpp)
+add_executable(unique_ptr_solution unique_ptr_solution.cpp)
