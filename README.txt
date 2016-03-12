@@ -21,8 +21,9 @@ Aby dostać konkretny węzeł metoda Node* get(const int value) iteruje po liśc
 zawsze przechodząc przez wszystkie elementy aż do napotkania tego, który chcemy zwrócić.
 a) uruchom program list i sprawdź jak zachowuje się lista gdy dodajemy na nią więcej elementów
 b) rozwiąż problem wycieków pamięci (bez stosowania inteligentnych wskaźników)
-c) zastosuj inteligentne wskaźniki w miejsce natywnych wskaźników
-d) co się stanie jeśli na listę dodamy 2 razy ten sam węzeł? rozwiąż problem
+c) co się stanie jeśli na listę dodamy 2 razy ten sam węzeł? rozwiąż problem
+d) zastosuj inteligentne wskaźniki w miejsce natywnych wskaźników
+
 
 
 Praca domowa - dla osób, które chcą poćwiczyć, przyda się do kolokwium :)
