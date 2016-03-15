@@ -28,11 +28,10 @@ int main(int argc, char* argv[])
         cerr << "You need to pass 1 argument" << endl;
         exit(-1);
     }
-    auto N = make_unique<const char>(*argv[1]);
-    unique_ptr<Resource> rsc = nullptr;
     try
     {
-        rsc = make_unique<Resource>();
+        auto rsc = make_unique<Resource>();
+        auto N = make_unique<const char>(char(*argv[1]));  // overengineering
         rsc->use(move(N));
     }
     catch (logic_error & e)
