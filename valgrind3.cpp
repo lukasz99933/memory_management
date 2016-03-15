@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     catch (logic_error & e)
     {
         cout << e.what() << endl;
-        delete rsc;
+        delete rsc;     // fixed memory leak when exception occured
     }
     return 0;
 }
