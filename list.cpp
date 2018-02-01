@@ -17,26 +17,29 @@ public:
     int value;
 };
 
+template<typename typ>
 class List
 {
 public:
     List();
-    void add(shared_ptr<Node> node);        // dodaje element na koniec listy
-    void addFirst(shared_ptr<Node> node);   // dodaje element na początek listy
-    shared_ptr<Node> get(const int value);  // zwraca element o wskazanej wartości
-    shared_ptr<Node> getBackward(const int value); //szuka element od konca listy
+    void add(typ node);        // dodaje element na koniec listy
+    void addFirst(typ node);   // dodaje element na początek listy
+    typ get(const int value);  // zwraca element o wskazanej wartości
+    typ getBackward(const int value); //szuka element od konca listy
 
 private:
-    shared_ptr<Node> first;
-    shared_ptr<Node> last;
+    typ first;
+    typ last;
 };
 
-List::List() :
+template<typename typ>
+List<typ>::List() :
     first(nullptr),
 	last(nullptr)
 {}
 
-void List::add(shared_ptr<Node> node)
+template<typename typ>
+void List<typ>::add(typ node)
 {
     if(!first)
     {
@@ -44,7 +47,7 @@ void List::add(shared_ptr<Node> node)
     }
     else
     {
-        shared_ptr<Node> current = first;
+        typ current = first;
         while(current->next)
         {
         	current = current->next;
@@ -54,7 +57,8 @@ void List::add(shared_ptr<Node> node)
     }
 }
 
-void List::addFirst(shared_ptr<Node> node)
+template<typename typ>
+void List<typ>::addFirst(typ node)
 {
 	if(!last)
 	{
@@ -62,7 +66,7 @@ void List::addFirst(shared_ptr<Node> node)
 	}
 	else
 	{
-		shared_ptr<Node> current =last;
+		typ current =last;
 		while(current->previous)
 		{
 			current=current->previous;
@@ -71,7 +75,8 @@ void List::addFirst(shared_ptr<Node> node)
 	}
 }
 
-shared_ptr<Node> List::getBackward(const int value)
+template<typename typ>
+typ List<typ>::getBackward(const int value)
 {
 	if(!first)
 	{
@@ -80,7 +85,7 @@ shared_ptr<Node> List::getBackward(const int value)
 	}
 	else
     	{
-        	shared_ptr<Node> current = last;
+        	typ current = last;
         	do
         	{
             		if(current->value == value)
@@ -100,7 +105,8 @@ shared_ptr<Node> List::getBackward(const int value)
 
 }
 
-shared_ptr<Node> List::get(const int value)
+template<typename typ>
+typ List<typ>::get(const int value)
 {
     if(!first)
     {
@@ -109,7 +115,7 @@ shared_ptr<Node> List::get(const int value)
     }
     else
     {
-        shared_ptr<Node> current = first;
+        typ current = first;
         do
         {
             if(current->value == value)
@@ -130,7 +136,7 @@ shared_ptr<Node> List::get(const int value)
 
 int main()
 {
-    List lista;
+    List< shared_ptr<Node> > lista;
     lista.add(make_shared<Node>(3));
     lista.addFirst(make_shared<Node>(2));
     auto node = lista.getBackward(2);
