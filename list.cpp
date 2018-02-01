@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -11,8 +12,8 @@ public:
         value(v)
     {}
 
-    Node* next;
-    Node* previous;
+    shared_ptr<Node> next;
+    shared_ptr<Node> previous;
     int value;
 };
 
@@ -20,14 +21,14 @@ class List
 {
 public:
     List();
-    void add(Node* node);        // dodaje element na koniec listy
-    void addFirst(Node* node);   // dodaje element na początek listy
-    Node* get(const int value);  // zwraca element o wskazanej wartości
-    Node* getBackward(const int value); //szuka element od konca listy
+    void add(shared_ptr<Node> node);        // dodaje element na koniec listy
+    void addFirst(shared_ptr<Node> node);   // dodaje element na początek listy
+    shared_ptr<Node> get(const int value);  // zwraca element o wskazanej wartości
+    shared_ptr<Node> getBackward(const int value); //szuka element od konca listy
 
 private:
-    Node* first;
-    Node* last;
+    shared_ptr<Node> first;
+    shared_ptr<Node> last;
 };
 
 List::List() :
@@ -35,7 +36,7 @@ List::List() :
 	last(nullptr)
 {}
 
-void List::add(Node* node)
+void List::add(shared_ptr<Node> node)
 {
     if(!first)
     {
@@ -43,7 +44,7 @@ void List::add(Node* node)
     }
     else
     {
-        Node* current = first;
+        shared_ptr<Node> current = first;
         while(current->next)
         {
         	current = current->next;
@@ -53,7 +54,7 @@ void List::add(Node* node)
     }
 }
 
-void List::addFirst(Node* node)
+void List::addFirst(shared_ptr<Node> node)
 {
 	if(!last)
 	{
@@ -61,7 +62,7 @@ void List::addFirst(Node* node)
 	}
 	else
 	{
-		Node* current =last;
+		shared_ptr<Node> current =last;
 		while(current->previous)
 		{
 			current=current->previous;
@@ -70,7 +71,7 @@ void List::addFirst(Node* node)
 	}
 }
 
-Node* List::getBackward(const int value)
+shared_ptr<Node> List::getBackward(const int value)
 {
 	if(!first)
 	{
@@ -79,7 +80,7 @@ Node* List::getBackward(const int value)
 	}
 	else
     	{
-        	Node* current = last;
+        	shared_ptr<Node> current = last;
         	do
         	{
             		if(current->value == value)
@@ -99,7 +100,7 @@ Node* List::getBackward(const int value)
 
 }
 
-Node* List::get(const int value)
+shared_ptr<Node> List::get(const int value)
 {
     if(!first)
     {
@@ -108,7 +109,7 @@ Node* List::get(const int value)
     }
     else
     {
-        Node* current = first;
+        shared_ptr<Node> current = first;
         do
         {
             if(current->value == value)
@@ -130,9 +131,8 @@ Node* List::get(const int value)
 int main()
 {
     List lista;
-    lista.add(new Node(3));
-    lista.addFirst(new Node(1));
-    lista.addFirst(new Node(2));
+    lista.add(make_shared<Node>(3));
+    lista.addFirst(make_shared<Node>(2));
     auto node = lista.getBackward(2);
 
     return 0;
