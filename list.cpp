@@ -7,10 +7,12 @@ class Node
 public:
     Node(const int v) :
         next(nullptr),
+	previous(nullptr),
         value(v)
     {}
 
     Node* next;
+    Node* previous;
     int value;
 };
 
@@ -19,7 +21,9 @@ class List
 public:
     List();
     void add(Node* node);        // dodaje element na koniec listy
+    void addFirst(Node* node);   // dodaje element na początek listy
     Node* get(const int value);  // zwraca element o wskazanej wartości
+    Node* getBackward(const int value); //szuka element od konca listy
 
 private:
     Node* first;
@@ -44,6 +48,19 @@ void List::add(Node* node)
         }
         current->next = node;
     }
+}
+
+void List::addFirst(Node* node)
+{
+	if(!first)
+	{
+		first=node;
+	}
+	else
+	{
+
+
+}
 }
 
 Node* List::get(const int value)
