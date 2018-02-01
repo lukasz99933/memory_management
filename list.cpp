@@ -27,10 +27,12 @@ public:
 
 private:
     Node* first;
+    Node* last;
 };
 
 List::List() :
-    first(nullptr)
+    first(nullptr),
+	last(nullptr)
 {}
 
 void List::add(Node* node)
@@ -44,23 +46,57 @@ void List::add(Node* node)
         Node* current = first;
         while(current->next)
         {
-            current = current->next;
+        	current = current->next;
         }
+	last = node;
         current->next = node;
     }
 }
 
 void List::addFirst(Node* node)
 {
-	if(!first)
+	if(!last)
 	{
-		first=node;
+		last=node;
 	}
 	else
 	{
-
-
+		Node* current =last;
+		while(current->previous)
+		{
+			current=current->previous;
+		}
+		current->previous = node;
+	}
 }
+
+Node* List::getBackward(const int value)
+{
+	if(!first)
+	{
+		cout << "List is empty!" << endl;
+		return nullptr;
+	}
+	else
+    	{
+        	Node* current = last;
+        	do
+        	{
+            		if(current->value == value)
+            		{
+                	cout << "Found value " << current->value << endl;
+                	return current;
+            	}
+            	else
+            	{
+                	cout << "Going through " << current->value << endl;
+                	current = current->previous;
+            	}
+        	} while(current);
+        	cout << "Not found: value " << value << endl;
+        	return nullptr;
+    	}
+
 }
 
 Node* List::get(const int value)
@@ -94,14 +130,10 @@ Node* List::get(const int value)
 int main()
 {
     List lista;
-    Node* node4 = new Node(4);
-    Node* node7 = new Node(7);
-
-    lista.add(node4);
-    lista.add(new Node(2));
-    lista.add(node7);
-    lista.add(new Node(9));
-    auto node = lista.get(1);
+    lista.add(new Node(3));
+    lista.addFirst(new Node(1));
+    lista.addFirst(new Node(2));
+    auto node = lista.getBackward(2);
 
     return 0;
 }
