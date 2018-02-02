@@ -3,10 +3,11 @@
 
 using namespace std;
 
+template<typename typ>
 class Node
 {
 public:
-    Node(const int v) :
+    Node(const typ v) :
         next(nullptr),
 	previous(nullptr),
         value(v)
@@ -14,7 +15,7 @@ public:
 
     shared_ptr<Node> next;
     shared_ptr<Node> previous;
-    int value;
+    typ value;
 };
 
 template<typename typ>
@@ -136,9 +137,9 @@ typ List<typ>::get(const int value)
 
 int main()
 {
-    List< shared_ptr<Node> > lista;
-    lista.add(make_shared<Node>(3));
-    lista.addFirst(make_shared<Node>(2));
+    List< shared_ptr<Node<int>> > lista;
+    lista.add(make_shared<Node<int>>(3));
+    lista.addFirst(make_shared<Node<int>>(2));
     auto node = lista.getBackward(2);
 
     return 0;
